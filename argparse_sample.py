@@ -1,12 +1,19 @@
 import argparse
 # https://docs.python.org/3/library/argparse.html
 
-argParser = argparse.ArgumentParser()
-argParser.add_argument("-n", "--name", help="your name")
-argParser.add_argument("-d", "--default", help="arg with default value", default="A def value")
+def parse_args():
+    argParser = argparse.ArgumentParser(
+                    prog='ProgramName',
+                    description='What the program does',
+                    epilog='Text at the bottom of help')
+    argParser.add_argument('filename')           # positional argument
+    argParser.add_argument('-c', '--count')      # option that takes a value
+    argParser.add_argument('-v', '--verbose',
+                    action='store_true')  # on/off flag
 
-args = argParser.parse_args()
-print("args=%s" % args)
+    args = argParser.parse_args()
+    return args
 
-print("args.name=%s" % args.name)
-print("args.name=%s" % args.name)
+args = parse_args()
+print(args)
+
